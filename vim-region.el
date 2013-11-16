@@ -91,9 +91,6 @@
             (define-key map (kbd "g") 'beginning-of-buffer)
             (define-key map (kbd "G") 'end-of-buffer)
 
-            (define-key map (kbd "f") 'forward-defun)
-            (define-key map (kbd "F") 'backward-defun)
-            
             (define-key map (kbd "o") 'mark-whole-buffer)
 
             (define-key map (kbd "C-g") 'vim-region-quit)
@@ -101,6 +98,9 @@
 
             (define-key map (kbd "v") 'vim-region-scroll-up)
             (define-key map (kbd "V") 'vim-region-scroll-down)
+
+            (define-key map (kbd "/") 'isearch-forward)
+            (define-key map (kbd "?") 'isearch-backward)
 
             map))
 
