@@ -62,6 +62,38 @@
   (scroll-down)
   (recenter))
 
+(defvar vim-region-last-search-char nil)
+(defun vim-region-forward-to-char (arg &optional char)
+  (interactive "p\n")
+  (unless char
+    (if (memq last-command '(vim-region-forward-to-char vim-region-backward-to-char))
+        (setq char vim-region-last-search-char)
+      (setq char (read-char "Forward Char: "))))
+  (setq vim-region-last-search-char char)
+  (when (>= arg 0)
+    (forward-char 1))
+  (let ((case-fold-search nil))
+    (search-forward (char-to-string char) nil t arg))
+  (when (>= arg 0)
+    (backward-char 1)))
+
+(defun vim-region-backward-to-char (arg &optional char)
+  (interactive "p\n")
+  (unless char
+    (if (memq last-command '(vim-region-forward-to-char vim-region-backward-to-char))
+        (setq char vim-region-last-search-char)
+      (setq char (read-char "Backward Char: "))))
+  (backward-char 1)
+  (vim-region-forward-to-char (- arg) char))
+
+(defun vim-region-forward-last-char ()
+  (interactive)
+  (vim-region-forward-to-char 1 vim-region-last-search-char))
+
+(defun vim-region-backward-last-char ()
+  (interactive)
+  (vim-region-backward-to-char 1 vim-region-last-search-char))
+
 ;;;###autoload
 (define-minor-mode vim-region-mode
   "vim-region-mode"
@@ -101,6 +133,11 @@
 
             (define-key map (kbd "/") 'isearch-forward)
             (define-key map (kbd "?") 'isearch-backward)
+
+            (define-key map (kbd "f") 'vim-region-forward-to-char)
+            (define-key map (kbd ";") 'vim-region-forward-last-char)
+            (define-key map (kbd "F") 'vim-region-backward-to-char)
+            (define-key map (kbd ",") 'vim-region-backward-last-char)
 
             map))
 
