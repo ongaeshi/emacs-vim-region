@@ -93,6 +93,14 @@
   (interactive)
   (vim-region-backward-to-char 1 vim-region-last-search-char))
 
+(defun vim-region-toggle-mark ()
+  (interactive)
+  (if (featurep 'cua-base)
+      (cua-set-mark)
+    (if mark-active
+        (deactivate-mark)
+      (set-mark (point)))))
+
 ;;;###autoload
 (define-minor-mode vim-region-mode
   "vim-region-mode"
@@ -110,8 +118,9 @@
 
             (define-key map (kbd "y") 'vim-region-copy)
             (define-key map (kbd "d") 'vim-region-kill)
+            (define-key map (kbd "v") 'vim-region-toggle-mark)
             (define-key map (kbd "x") 'exchange-point-and-mark)
-            
+
             (define-key map (kbd "w") 'forward-word)
             (define-key map (kbd "b") 'backward-word)
             
@@ -129,8 +138,6 @@
             (define-key map (kbd "C-g") 'vim-region-quit)
             (define-key map (kbd "C-y") 'vim-region-yank)
 
-            (define-key map (kbd "v") 'vim-region-scroll-up)
-            (define-key map (kbd "V") 'vim-region-scroll-down)
             (define-key map (kbd "C-f") 'vim-region-scroll-up)
             (define-key map (kbd "C-b") 'vim-region-scroll-up)
 

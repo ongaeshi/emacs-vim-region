@@ -29,6 +29,7 @@ vim-region-mode
 
 "y"  vim-region-copy
 "d"  vim-region-kill
+"v"  vim-region-toggle-mark
 "x"  exchange-point-and-mark
 
 "w"  forward-word
@@ -48,8 +49,8 @@ vim-region-mode
 "C-g"  vim-region-quit
 "C-y"  vim-region-yank
 
-"v", "C-f"  vim-region-scroll-up
-"V", "C-b"  vim-region-scroll-down
+"C-f"  vim-region-scroll-up
+"C-b"  vim-region-scroll-down
 
 "/"  isearch-forward
 "?"  isearch-backward
