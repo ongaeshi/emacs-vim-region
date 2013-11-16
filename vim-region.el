@@ -48,9 +48,9 @@
 (defun vim-region-yank ()
   (interactive)
   (vim-region-mode 0)
-  ;;(yank)
-  (cua-paste nil)
-  )
+  (if (featurep 'cua-base)
+      (cua-paste nil)
+    (yank)))
 
 (defun vim-region-scroll-up ()
   (interactive)
@@ -107,13 +107,10 @@
 (add-hook 'vim-region-mode-hook 
           (lambda ()
             (if vim-region-mode
-                (progn
-                  ;; (message "Visual Mark Mode Start")
-                  ;; (set-mark (point))
-                  (cua-set-mark)
-                 ))
-            ;;(set-mark-command)
-            )) ; Want to remove cua
+                (if (featurep 'cua-base)
+                      (cua-set-mark)
+                    (set-mark (point))
+                    ))))
 
 (provide 'vim-region)
 ;;; anzu.el ends here
