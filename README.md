@@ -1,6 +1,5 @@
 # vim-region.el
 
-## Summary 
 Select region as vim.
 
 ## Screenshot
