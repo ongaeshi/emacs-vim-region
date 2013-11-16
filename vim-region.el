@@ -63,6 +63,7 @@
   (recenter))
 
 (defvar vim-region-last-search-char nil)
+
 (defun vim-region-forward-to-char (arg &optional char)
   (interactive "p\n")
   (unless char
@@ -73,9 +74,7 @@
   (when (>= arg 0)
     (forward-char 1))
   (let ((case-fold-search nil))
-    (search-forward (char-to-string char) nil t arg))
-  (when (>= arg 0)
-    (backward-char 1)))
+    (search-forward (char-to-string char) nil t arg)))
 
 (defun vim-region-backward-to-char (arg &optional char)
   (interactive "p\n")
