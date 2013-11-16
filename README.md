@@ -14,7 +14,7 @@ Select region as vim.
 
 If you press "C-@", change keybind as vim.
 
-Back to the original if you press the "d"(kill), "y"(copy), "C-y", and "C-g".
+Back to normal keybind if you press the "d"(kill), "y"(copy), "C-y", and "C-g".
 
 ```
 vim-region-mode
