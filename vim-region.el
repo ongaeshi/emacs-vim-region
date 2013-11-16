@@ -105,6 +105,8 @@
 
             (define-key map (kbd "a") 'move-beginning-of-line)
             (define-key map (kbd "e") 'move-end-of-line)
+            (define-key map (kbd "0") 'move-beginning-of-line)
+            (define-key map (kbd "$") 'move-end-of-line)
 
             (define-key map (kbd "y") 'vim-region-copy)
             (define-key map (kbd "d") 'vim-region-kill)
@@ -129,6 +131,8 @@
 
             (define-key map (kbd "v") 'vim-region-scroll-up)
             (define-key map (kbd "V") 'vim-region-scroll-down)
+            (define-key map (kbd "C-f") 'vim-region-scroll-up)
+            (define-key map (kbd "C-b") 'vim-region-scroll-up)
 
             (define-key map (kbd "/") 'isearch-forward)
             (define-key map (kbd "?") 'isearch-backward)
