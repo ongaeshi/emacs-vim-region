@@ -64,5 +64,5 @@ vim-region-mode
 ```
 
 ## AUTHORS
-ongaeshi
-Syohei YOSHIDA
+- ongaeshi
+- Syohei YOSHIDA
