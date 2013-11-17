@@ -29,8 +29,11 @@ vim-region-mode
 
 "y"  vim-region-copy
 "d"  vim-region-kill
-"v"  vim-region-toggle-mark
+"p"  vim-region-yank
+"c"  vim-region-copy
+
 "x"  exchange-point-and-mark
+"v"  vim-region-toggle-mark
 
 "w"  forward-word
 "b"  backward-word
@@ -38,8 +41,8 @@ vim-region-mode
 "s"  forward-sexp
 "S"  backward-sexp
 
-"p"  forward-paragraph
-"P"  backward-paragraph
+"m"  forward-paragraph
+"M"  backward-paragraph
 
 "g"  beginning-of-buffer
 "G"  end-of-buffer
@@ -47,7 +50,6 @@ vim-region-mode
 "o"  mark-whole-buffer
 
 "C-g"  vim-region-quit
-"C-y"  vim-region-yank
 
 "C-f"  vim-region-scroll-up
 "C-b"  vim-region-scroll-down
