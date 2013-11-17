@@ -28,43 +28,36 @@
 
 ;;; Code:
 
+(defvar vim-region-non-auto-quit nil)
+
+(defun vim-region-auto-quit ()
+  (unless vim-region-non-auto-quit
+      (vim-region-mode 0)))
+
 (defun vim-region-copy ()
   (interactive)
   (kill-ring-save (region-beginning) (region-end))
   (yank)
-  (vim-region-mode 0))
-
-(defun vim-region-copy-no-quit ()
-  (interactive)
-  (kill-ring-save (region-beginning) (region-end))
-  (yank))
+  (vim-region-auto-quit))
 
 (defun vim-region-save ()
   (interactive)
   (kill-ring-save (region-beginning) (region-end))
-  (vim-region-mode 0))
-
-(defun vim-region-save-no-quit ()
-  (interactive)
-  (kill-ring-save (region-beginning) (region-end)))
+  (vim-region-auto-quit))
 
 (defun vim-region-kill ()
   (interactive)
   (kill-region (region-beginning) (region-end))
-  (vim-region-mode 0))
-
-(defun vim-region-kill-no-quit ()
-  (interactive)
-  (kill-region (region-beginning) (region-end)))
+  (vim-region-auto-quit))
 
 (defun vim-region-quit ()
   (interactive)
-  (vim-region-mode 0)
+  (vim-region-auto-quit)
   (keyboard-quit))
 
 (defun vim-region-yank ()
   (interactive)
-  (vim-region-mode 0)
+  (vim-region-auto-quit)
   (if (featurep 'cua-base)
       (cua-paste nil)
     (yank)))
@@ -112,6 +105,9 @@
 
 (defun vim-region-toggle-mark ()
   (interactive)
+  (unless vim-region-non-auto-quit
+      (message "Start global vim-region mode"))
+  (setq vim-region-non-auto-quit t)
   (if (featurep 'cua-base)
       (cua-set-mark)
     (if mark-active
@@ -138,11 +134,8 @@
             (define-key map (kbd "$") 'move-end-of-line)
 
             (define-key map (kbd "c") 'vim-region-copy)
-            (define-key map (kbd "C") 'vim-region-copy-no-quit)
             (define-key map (kbd "y") 'vim-region-save)
-            (define-key map (kbd "Y") 'vim-region-save-no-quit)
             (define-key map (kbd "d") 'vim-region-kill)
-            (define-key map (kbd "D") 'vim-region-kill-no-quit)
             (define-key map (kbd "v") 'vim-region-toggle-mark)
             (define-key map (kbd "x") 'exchange-point-and-mark)
 
@@ -180,6 +173,7 @@
 
 (add-hook 'vim-region-mode-hook 
           (lambda ()
+            (setq vim-region-non-auto-quit nil)
             (if vim-region-mode
                 (if (featurep 'cua-base)
                       (cua-set-mark)
