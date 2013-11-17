@@ -133,11 +133,13 @@
             (define-key map (kbd "0") 'move-beginning-of-line)
             (define-key map (kbd "$") 'move-end-of-line)
 
-            (define-key map (kbd "c") 'vim-region-copy)
             (define-key map (kbd "y") 'vim-region-save)
             (define-key map (kbd "d") 'vim-region-kill)
-            (define-key map (kbd "v") 'vim-region-toggle-mark)
+            (define-key map (kbd "p") 'vim-region-yank)
+            (define-key map (kbd "c") 'vim-region-copy)
+
             (define-key map (kbd "x") 'exchange-point-and-mark)
+            (define-key map (kbd "v") 'vim-region-toggle-mark)
 
             (define-key map (kbd "w") 'forward-word)
             (define-key map (kbd "b") 'backward-word)
@@ -145,8 +147,8 @@
             (define-key map (kbd "s") 'forward-sexp)
             (define-key map (kbd "S") 'backward-sexp)
 
-            (define-key map (kbd "p") 'forward-paragraph)
-            (define-key map (kbd "P") 'vim-reginon-backward-paragraph)
+            (define-key map (kbd "m") 'forward-paragraph)
+            (define-key map (kbd "M") 'vim-reginon-backward-paragraph)
             
             (define-key map (kbd "g") 'beginning-of-buffer)
             (define-key map (kbd "G") 'end-of-buffer)
@@ -154,7 +156,6 @@
             (define-key map (kbd "o") 'mark-whole-buffer)
 
             (define-key map (kbd "C-g") 'vim-region-quit)
-            (define-key map (kbd "C-y") 'vim-region-yank)
 
             (define-key map (kbd "C-f") 'vim-region-scroll-up)
             (define-key map (kbd "C-b") 'vim-region-scroll-up)
