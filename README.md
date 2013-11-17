@@ -53,7 +53,9 @@ vim-region-mode
 "C-b"  vim-region-scroll-down
 
 "/"  isearch-forward
+"n"  isearch-repeat-forward
 "?"  isearch-backward
+"N"  isearch-repeat-backward
 
 "f"  vim-region-forward-to-char
 ";"  vim-region-forward-last-char

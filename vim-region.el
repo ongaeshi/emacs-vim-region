@@ -143,6 +143,8 @@
 
             (define-key map (kbd "/") 'isearch-forward)
             (define-key map (kbd "?") 'isearch-backward)
+            (define-key map (kbd "n") 'isearch-repeat-forward)
+            (define-key map (kbd "N") 'isearch-repeat-backward)
 
             (define-key map (kbd "f") 'vim-region-forward-to-char)
             (define-key map (kbd ";") 'vim-region-forward-last-char)
