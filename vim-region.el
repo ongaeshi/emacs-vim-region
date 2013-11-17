@@ -31,19 +31,31 @@
 (defun vim-region-copy ()
   (interactive)
   (kill-ring-save (region-beginning) (region-end))
-  (vim-region-mode 0)
-  )
+  (yank)
+  (vim-region-mode 0))
 
 (defun vim-region-copy-no-quit ()
   (interactive)
   (kill-ring-save (region-beginning) (region-end))
-  )
+  (yank))
+
+(defun vim-region-save ()
+  (interactive)
+  (kill-ring-save (region-beginning) (region-end))
+  (vim-region-mode 0))
+
+(defun vim-region-save-no-quit ()
+  (interactive)
+  (kill-ring-save (region-beginning) (region-end)))
 
 (defun vim-region-kill ()
   (interactive)
   (kill-region (region-beginning) (region-end))
-  (vim-region-mode 0)
-  )
+  (vim-region-mode 0))
+
+(defun vim-region-kill-no-quit ()
+  (interactive)
+  (kill-region (region-beginning) (region-end)))
 
 (defun vim-region-quit ()
   (interactive)
@@ -125,9 +137,12 @@
             (define-key map (kbd "0") 'move-beginning-of-line)
             (define-key map (kbd "$") 'move-end-of-line)
 
-            (define-key map (kbd "y") 'vim-region-copy)
-            (define-key map (kbd "Y") 'vim-region-copy-no-quit)
+            (define-key map (kbd "c") 'vim-region-copy)
+            (define-key map (kbd "C") 'vim-region-copy-no-quit)
+            (define-key map (kbd "y") 'vim-region-save)
+            (define-key map (kbd "Y") 'vim-region-save-no-quit)
             (define-key map (kbd "d") 'vim-region-kill)
+            (define-key map (kbd "D") 'vim-region-kill-no-quit)
             (define-key map (kbd "v") 'vim-region-toggle-mark)
             (define-key map (kbd "x") 'exchange-point-and-mark)
 
