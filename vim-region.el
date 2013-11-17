@@ -106,6 +106,10 @@
         (deactivate-mark)
       (set-mark (point)))))
 
+(defun vim-reginon-backward-paragraph ()
+  (interactive)
+  (forward-paragraph -1))
+
 ;;;###autoload
 (define-minor-mode vim-region-mode
   "vim-region-mode"
@@ -134,7 +138,7 @@
             (define-key map (kbd "S") 'backward-sexp)
 
             (define-key map (kbd "p") 'forward-paragraph)
-            (define-key map (kbd "P") 'backward-paragraph)
+            (define-key map (kbd "P") 'vim-reginon-backward-paragraph)
             
             (define-key map (kbd "g") 'beginning-of-buffer)
             (define-key map (kbd "G") 'end-of-buffer)
