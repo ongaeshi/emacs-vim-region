@@ -133,6 +133,12 @@
   (interactive)
   (forward-paragraph -1))
 
+(defun vim-region-mark-symbol ()
+  (interactive)
+  (beginning-of-thing 'sexp)
+  (set-mark (point))
+  (end-of-thing 'sexp))
+
 (define-minor-mode local-vim-region-mode
   "vim-region-mode"
   :lighter " vim-region"
@@ -162,6 +168,8 @@
             
             (define-key map (kbd "s") 'forward-sexp)
             (define-key map (kbd "S") 'backward-sexp)
+
+            (define-key map (kbd "t") 'vim-region-mark-symbol)
 
             (define-key map (kbd "m") 'forward-paragraph)
             (define-key map (kbd "M") 'vim-reginon-backward-paragraph)
