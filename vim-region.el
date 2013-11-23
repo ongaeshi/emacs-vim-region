@@ -47,8 +47,15 @@
 
 (defun vim-region-kill ()
   (interactive)
-  (kill-region (region-beginning) (region-end))
-  (vim-region-auto-quit))
+  (if mark-active
+      (progn
+        (kill-region (region-beginning) (region-end))
+        (vim-region-auto-quit))
+    (kill-line)))
+
+(defun vim-region-delete-char ()
+  (interactive)
+  (delete-char 1))
 
 (defun vim-region-quit ()
   (interactive)
@@ -105,21 +112,28 @@
 
 (defun vim-region-toggle-mark ()
   (interactive)
-  (unless vim-region-non-auto-quit
-      (message "Start global vim-region mode"))
-  (setq vim-region-non-auto-quit t)
   (if (featurep 'cua-base)
       (cua-set-mark)
     (if mark-active
         (deactivate-mark)
       (set-mark (point)))))
 
+(defun vim-region-toggle-eternal ()
+  (interactive)
+  (if vim-region-non-auto-quit
+    (progn
+      (message "End eternal vim-region mode")
+      (setq vim-region-non-auto-quit nil))
+    (if mark-active
+        (deactivate-mark))
+    (message "[EVR] Start eternal vim-region mode")
+    (setq vim-region-non-auto-quit t)))
+
 (defun vim-reginon-backward-paragraph ()
   (interactive)
   (forward-paragraph -1))
 
-;;;###autoload
-(define-minor-mode vim-region-mode
+(define-minor-mode local-vim-region-mode
   "vim-region-mode"
   :lighter " vim-region"
   :keymap (let ((map (make-sparse-keymap)))
@@ -137,9 +151,11 @@
             (define-key map (kbd "d") 'vim-region-kill)
             (define-key map (kbd "p") 'vim-region-yank)
             (define-key map (kbd "c") 'vim-region-copy)
+            (define-key map (kbd "x") 'vim-region-delete-char)
 
-            (define-key map (kbd "x") 'exchange-point-and-mark)
+            (define-key map (kbd "z") 'exchange-point-and-mark)
             (define-key map (kbd "v") 'vim-region-toggle-mark)
+            (define-key map (kbd "q") 'vim-region-toggle-eternal) ; Under Development
 
             (define-key map (kbd "w") 'forward-word)
             (define-key map (kbd "b") 'backward-word)
@@ -149,11 +165,11 @@
 
             (define-key map (kbd "m") 'forward-paragraph)
             (define-key map (kbd "M") 'vim-reginon-backward-paragraph)
-            
+
             (define-key map (kbd "g") 'beginning-of-buffer)
             (define-key map (kbd "G") 'end-of-buffer)
 
-            (define-key map (kbd "o") 'mark-whole-buffer)
+            (define-key map (kbd "O") 'mark-whole-buffer)
 
             (define-key map (kbd "C-g") 'vim-region-quit)
 
@@ -170,7 +186,17 @@
             (define-key map (kbd "F") 'vim-region-backward-to-char)
             (define-key map (kbd ",") 'vim-region-backward-last-char)
 
+            (define-key map (kbd "u") 'undo)
+
             map))
+
+;;;###autoload
+(define-global-minor-mode vim-region-mode
+  local-vim-region-mode
+  (lambda ()
+    (unless (minibufferp)
+      (local-vim-region-mode t)))
+  :group 'vim-region)
 
 (add-hook 'vim-region-mode-hook 
           (lambda ()
@@ -182,4 +208,4 @@
                     ))))
 
 (provide 'vim-region)
-;;; anzu.el ends here
+;;; vim-region.el ends here
