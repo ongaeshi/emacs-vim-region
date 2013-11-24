@@ -31,9 +31,11 @@ vim-region-mode
 "d"  vim-region-kill
 "p"  vim-region-yank
 "c"  vim-region-copy
+"x"  vim-region-delete-char
 
-"x"  exchange-point-and-mark
+"z"  exchange-point-and-mark
 "v"  vim-region-toggle-mark
+"q"  vim-region-toggle-eternal
 
 "w"  forward-word
 "b"  backward-word
@@ -41,13 +43,15 @@ vim-region-mode
 "s"  forward-sexp
 "S"  backward-sexp
 
+"t"  vim-region-mark-symbol
+
 "m"  forward-paragraph
 "M"  backward-paragraph
 
 "g"  beginning-of-buffer
 "G"  end-of-buffer
 
-"o"  mark-whole-buffer
+"O"  mark-whole-buffer
 
 "C-g"  vim-region-quit
 
@@ -63,6 +67,8 @@ vim-region-mode
 ";"  vim-region-forward-last-char
 "F"  vim-region-backward-to-char
 ","  vim-region-backward-last-char
+
+"u"  undo
 ```
 
 ## AUTHORS
