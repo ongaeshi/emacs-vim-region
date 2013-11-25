@@ -113,7 +113,7 @@
 (defun vim-region-toggle-mark ()
   (interactive)
   (if (featurep 'cua-base)
-      (cua-set-mark)
+      (cua-set-mark)                    ; auto toggle
     (if mark-active
         (deactivate-mark)
       (set-mark (point)))))
