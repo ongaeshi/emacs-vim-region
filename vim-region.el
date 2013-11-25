@@ -27,6 +27,7 @@
 ;;
 
 ;;; Code:
+(require 'thingatpt)
 
 (defvar vim-region-non-auto-quit nil)
 
