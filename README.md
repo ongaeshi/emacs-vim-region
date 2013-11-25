@@ -5,6 +5,11 @@ Select region as vim.
 ## Screenshot
 
 ## Installation
+You can install from MELPA with package.el
+
+```
+M-x package-install vim-region
+```
 
 ## Basic Usage
 ```lisp
