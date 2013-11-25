@@ -210,10 +210,10 @@
           (lambda ()
             (setq vim-region-non-auto-quit nil)
             (if vim-region-mode
-                (if (featurep 'cua-base)
-                      (cua-set-mark)
-                    (set-mark (point))
-                    ))))
+                (unless mark-active
+                    (if (featurep 'cua-base)
+                        (cua-set-mark)
+                      (set-mark (point)))))))
 
 (provide 'vim-region)
 ;;; vim-region.el ends here
