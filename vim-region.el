@@ -216,5 +216,65 @@
                         (cua-set-mark)
                       (set-mark (point)))))))
 
+(defvar vim-region-funcs
+  '("forward-char"
+    "next-line"
+    "previous-line"
+    "backward-char"
+    "move-beginning-of-line"
+    "move-end-of-line"
+    "move-beginning-of-line"
+    "move-end-of-line"
+    "vim-region-save"
+    "vim-region-kill"
+    "vim-region-yank"
+    "vim-region-copy"
+    "vim-region-delete-char"
+    "exchange-point-and-mark"
+    "vim-region-toggle-mark"
+    "vim-region-toggle-eternal"
+    "forward-word"
+    "backward-word"
+    "forward-sexp"
+    "backward-sexp"
+    "vim-region-mark-symbol"
+    "forward-paragraph"
+    "vim-reginon-backward-paragraph"
+    "beginning-of-buffer"
+    "end-of-buffer"
+    "mark-whole-buffer"
+    "vim-region-quit"
+    "vim-region-scroll-up"
+    "vim-region-scroll-up"
+    "isearch-forward"
+    "isearch-backward"
+    "isearch-repeat-forward"
+    "isearch-repeat-backward"
+    "vim-region-forward-to-char"
+    "region-forward-last-char"
+    "vim-region-backward-to-char"
+    "region-backward-last-char"
+    "undo"
+    "vim-region-mode"
+    ))
+
+(defun vim-region-is-in (list str)
+  (catch 'match
+    (while (car list)
+      (progn (if (string= (car list) str)
+                 (throw 'match 1))
+             (setq list (cdr list))))
+    nil))
+
+(defun vim-region-command-check ()
+ ;; (message "func: %s" this-command)
+ (if (and vim-region-mode
+          (not (vim-region-is-in vim-region-funcs this-command)))
+     (progn
+       ;; (message "[hook] vim-region-auto-quit: %s" this-command)
+       (vim-region-auto-quit))))
+
+(add-hook 'pre-command-hook 'vim-region-command-check)
+
 (provide 'vim-region)
 ;;; vim-region.el ends here
