@@ -58,8 +58,6 @@ vim-region-mode
 
 "O"  mark-whole-buffer
 
-"C-g"  vim-region-quit
-
 "C-f"  vim-region-scroll-up
 "C-b"  vim-region-scroll-down
 
