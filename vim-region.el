@@ -38,34 +38,25 @@
 (defun vim-region-copy ()
   (interactive)
   (kill-ring-save (region-beginning) (region-end))
-  (yank)
-  (vim-region-auto-quit))
+  (yank))
 
 (defun vim-region-save ()
   (interactive)
-  (kill-ring-save (region-beginning) (region-end))
-  (vim-region-auto-quit))
+  (kill-ring-save (region-beginning) (region-end)))
 
 (defun vim-region-kill ()
   (interactive)
   (if mark-active
       (progn
-        (kill-region (region-beginning) (region-end))
-        (vim-region-auto-quit))
+        (kill-region (region-beginning) (region-end)))
     (kill-line)))
 
 (defun vim-region-delete-char ()
   (interactive)
   (delete-char 1))
 
-(defun vim-region-quit ()
-  (interactive)
-  (vim-region-auto-quit)
-  (keyboard-quit))
-
 (defun vim-region-yank ()
   (interactive)
-  (vim-region-auto-quit)
   (if (featurep 'cua-base)
       (cua-paste nil)
     (yank)))
@@ -180,8 +171,6 @@
 
             (define-key map (kbd "O") 'mark-whole-buffer)
 
-            (define-key map (kbd "C-g") 'vim-region-quit)
-
             (define-key map (kbd "C-f") 'vim-region-scroll-up)
             (define-key map (kbd "C-b") 'vim-region-scroll-up)
 
@@ -225,10 +214,10 @@
     "move-end-of-line"
     "move-beginning-of-line"
     "move-end-of-line"
-    "vim-region-save"
-    "vim-region-kill"
-    "vim-region-yank"
-    "vim-region-copy"
+    ;; "vim-region-save"
+    ;; "vim-region-kill"
+    ;; "vim-region-yank"
+    ;; "vim-region-copy"
     "vim-region-delete-char"
     "exchange-point-and-mark"
     "vim-region-toggle-mark"
@@ -243,7 +232,7 @@
     "beginning-of-buffer"
     "end-of-buffer"
     "mark-whole-buffer"
-    "vim-region-quit"
+    ;; "vim-region-quit"
     "vim-region-scroll-up"
     "vim-region-scroll-up"
     "isearch-forward"
