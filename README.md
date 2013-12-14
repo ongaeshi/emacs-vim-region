@@ -49,6 +49,7 @@ vim-region-mode
 "S"  backward-sexp
 
 "t"  vim-region-mark-symbol
+"r"  vim-region-query-replace
 
 "m"  forward-paragraph
 "M"  backward-paragraph

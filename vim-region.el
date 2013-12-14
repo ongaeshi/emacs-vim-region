@@ -131,6 +131,14 @@
   (set-mark (point))
   (end-of-thing 'sexp))
 
+(defun vim-region-query-replace (replacement)
+  "Replace the symbol at point with REPLACEMENT."
+  (interactive (list (read-from-minibuffer "Replacement: " nil nil nil query-replace-to-history-variable)))
+  (let ((src (buffer-substring (region-beginning) (region-end))))
+    (goto-char (region-beginning))
+    (deactivate-mark)
+    (query-replace-regexp src replacement)))
+
 (define-minor-mode local-vim-region-mode
   "vim-region-mode"
   :lighter " vim-region"
@@ -162,6 +170,7 @@
             (define-key map (kbd "S") 'backward-sexp)
 
             (define-key map (kbd "t") 'vim-region-mark-symbol)
+            (define-key map (kbd "r") 'vim-region-query-replace)
 
             (define-key map (kbd "m") 'forward-paragraph)
             (define-key map (kbd "M") 'vim-reginon-backward-paragraph)
