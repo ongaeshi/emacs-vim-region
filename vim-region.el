@@ -181,7 +181,7 @@
             (define-key map (kbd "O") 'mark-whole-buffer)
 
             (define-key map (kbd "C-f") 'vim-region-scroll-up)
-            (define-key map (kbd "C-b") 'vim-region-scroll-up)
+            (define-key map (kbd "C-b") 'vim-region-scroll-down)
 
             (define-key map (kbd "/") 'isearch-forward)
             (define-key map (kbd "?") 'isearch-backward)
@@ -244,7 +244,7 @@
     "mark-whole-buffer"
     ;; "vim-region-quit"
     "vim-region-scroll-up"
-    "vim-region-scroll-up"
+    "vim-region-scroll-down"
     "isearch-forward"
     "isearch-backward"
     "isearch-repeat-forward"
