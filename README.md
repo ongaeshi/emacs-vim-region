@@ -73,6 +73,8 @@ vim-region-mode
 ","  vim-region-backward-last-char
 
 "u"  undo
+
+"+"  er/expand-region
 ```
 
 ## AUTHORS
