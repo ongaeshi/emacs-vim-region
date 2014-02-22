@@ -5,6 +5,7 @@
 ;; Author: ongaeshi <ongaeshi0621@gmail.com>
 ;; URL: https://github.com/ongaeshi/emacs-vim-region
 ;; Version: 0.2
+;; Package-Requires: ((expand-region "20140127"))
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -195,6 +196,8 @@
 
             (define-key map (kbd "u") 'undo)
 
+            (define-key map (kbd "+") 'er/expand-region)
+
             map))
 
 ;;;###autoload
@@ -262,6 +265,8 @@
     "region-backward-last-char"
     "undo"
     "vim-region-mode"
+    "er/expand-region"
+    "er/contract-region"
     "forward-list"
     "backward-list"
     "ruby-beginning-of-block"
@@ -279,6 +284,7 @@
 (defun vim-region-command-check ()
  ;; (message "func: %s" this-command)
  (if (and vim-region-mode
+          (symbolp this-command)
           (not (vim-region-is-in vim-region-funcs this-command)))
      (progn
        ;; (message "[hook] vim-region-auto-quit: %s" this-command)
