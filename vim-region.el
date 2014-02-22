@@ -4,7 +4,7 @@
 
 ;; Author: ongaeshi <ongaeshi0621@gmail.com>
 ;; URL: https://github.com/ongaeshi/emacs-vim-region
-;; Version: 0.2
+;; Version: 0.3
 ;; Package-Requires: ((expand-region "20140127"))
 
 ;; This program is free software; you can redistribute it and/or modify
