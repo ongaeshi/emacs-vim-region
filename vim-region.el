@@ -262,6 +262,10 @@
     "region-backward-last-char"
     "undo"
     "vim-region-mode"
+    "forward-list"
+    "backward-list"
+    "ruby-beginning-of-block"
+    "ruby-end-of-block"
     ))
 
 (defun vim-region-is-in (list str)
