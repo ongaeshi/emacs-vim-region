@@ -4,7 +4,7 @@
 
 ;; Author: ongaeshi <ongaeshi0621@gmail.com>
 ;; URL: https://github.com/ongaeshi/emacs-vim-region
-;; Version: 0.3
+;; Version: 0.4
 ;; Package-Requires: ((expand-region "20140127"))
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -271,6 +271,10 @@
     "backward-list"
     "ruby-beginning-of-block"
     "ruby-end-of-block"
+    "beginning-of-defun"
+    "end-of-defun"
+    "c-beginning-of-defun"
+    "c-end-of-defun"
     ))
 
 (defun vim-region-is-in (list str)
