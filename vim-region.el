@@ -4,7 +4,7 @@
 
 ;; Author: ongaeshi <ongaeshi0621@gmail.com>
 ;; URL: https://github.com/ongaeshi/emacs-vim-region
-;; Version: 0.4
+;; Version: 0.5
 ;; Package-Requires: ((expand-region "20140127"))
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -197,6 +197,9 @@
             (define-key map (kbd "u") 'undo)
 
             (define-key map (kbd "+") 'er/expand-region)
+
+            (define-key map (kbd "L") 'sort-lines)
+            (define-key map (kbd "A") 'align-regexp)
 
             map))
 

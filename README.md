@@ -75,6 +75,9 @@ vim-region-mode
 "u"  undo
 
 "+"  er/expand-region
+
+"L"  sort-lines
+"A"  align-regexp
 ```
 
 ## AUTHORS
